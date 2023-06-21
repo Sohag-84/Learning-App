@@ -43,7 +43,7 @@ class _WelcomeState extends State<Welcome> {
                         title: "First See Learning",
                         subtitle:
                             "Forget about a for of paper all knowledge in one learning",
-                        imagePath: "Image one",
+                        imagePath: "assets/images/reading.png",
                       ),
                       _page(
                         index: 2,
@@ -52,7 +52,7 @@ class _WelcomeState extends State<Welcome> {
                         title: "Connect With Everyone",
                         subtitle:
                             "Always keep in touch with your tutor & friend. Let's get connected.",
-                        imagePath: "Image one",
+                        imagePath: "assets/images/boy.png",
                       ),
                       _page(
                         index: 3,
@@ -61,7 +61,7 @@ class _WelcomeState extends State<Welcome> {
                         title: "Always Fascinated Learning",
                         subtitle:
                             "Anywhere anytime. The time is at your discretion so study whenever you want.",
-                        imagePath: "Image one",
+                        imagePath: "assets/images/man.png",
                       ),
                     ],
                   ),
@@ -102,7 +102,7 @@ class _WelcomeState extends State<Welcome> {
         SizedBox(
           height: 345.h,
           width: 345.w,
-          child: Text(imagePath),
+          child: Image.asset(imagePath, fit: BoxFit.cover),
         ),
         Text(
           title,
@@ -119,32 +119,41 @@ class _WelcomeState extends State<Welcome> {
             ),
           ),
         ),
-        Container(
-          height: 50.h,
-          width: 325.w,
-          margin: EdgeInsets.only(
-            top: 100.h,
-            left: 25.w,
-            right: 25.w,
-          ),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.circular(15.r),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.1),
-                spreadRadius: 1,
-                blurRadius: 2,
-                offset: Offset(0, 1),
+        InkWell(
+          onTap: () {
+            if (index > 3) {
+              ///set animation
+            } else {
+              ///another page
+            }
+          },
+          child: Container(
+            height: 50.h,
+            width: 325.w,
+            margin: EdgeInsets.only(
+              top: 100.h,
+              left: 25.w,
+              right: 25.w,
+            ),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(15.r),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.1),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: Offset(0, 1),
+                ),
+              ],
+            ),
+            child: Text(
+              buttonName,
+              style: TextStyle(
+                fontSize: 16.sp,
+                color: Colors.white,
               ),
-            ],
-          ),
-          child: Text(
-            buttonName,
-            style: TextStyle(
-              fontSize: 16.sp,
-              color: Colors.white,
             ),
           ),
         ),
