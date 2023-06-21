@@ -16,6 +16,8 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
+  PageController pageController = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,6 +32,7 @@ class _WelcomeState extends State<Welcome> {
                 alignment: Alignment.topCenter,
                 children: [
                   PageView(
+                    controller: pageController,
                     onPageChanged: (int index) {
                       state.page = index;
                       BlocProvider.of<WelcomeBlocs>(context)
@@ -121,10 +124,15 @@ class _WelcomeState extends State<Welcome> {
         ),
         InkWell(
           onTap: () {
-            if (index > 3) {
+            if (index < 3) {
               ///set animation
+              pageController.animateToPage(
+                index,
+                duration: Duration(milliseconds: 500),
+                curve: Curves.easeIn,
+              );
             } else {
-              ///another page
+              ///jump to another page
             }
           },
           child: Container(
