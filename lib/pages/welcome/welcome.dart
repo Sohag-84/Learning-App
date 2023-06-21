@@ -4,6 +4,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_app/common/values/colors.dart';
 import 'package:learning_app/pages/welcome/blocs/welcome_blocs.dart';
 import 'package:learning_app/pages/welcome/blocs/welcome_events.dart';
 import 'package:learning_app/pages/welcome/blocs/welcome_states.dart';
@@ -74,8 +75,8 @@ class _WelcomeState extends State<Welcome> {
                       dotsCount: 3,
                       position: state.page,
                       decorator: DotsDecorator(
-                        color: Colors.grey,
-                        activeColor: Colors.blue,
+                        color: AppColors.primaryThirdElementText,
+                        activeColor: AppColors.primaryElement,
                         size: Size.square(8.0),
                         activeSize: Size(15, 8),
                         activeShape: RoundedRectangleBorder(
@@ -109,7 +110,7 @@ class _WelcomeState extends State<Welcome> {
         ),
         Text(
           title,
-          style: TextStyle(fontSize: 24.sp),
+          style: TextStyle(fontSize: 24.sp, color: AppColors.primaryText),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 30.w),
@@ -118,7 +119,7 @@ class _WelcomeState extends State<Welcome> {
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.normal,
-              color: Colors.black.withOpacity(.5),
+              color: AppColors.primarySecondaryElementText,
             ),
           ),
         ),
@@ -150,7 +151,7 @@ class _WelcomeState extends State<Welcome> {
             ),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: AppColors.primaryElement,
               borderRadius: BorderRadius.circular(15.r),
               boxShadow: [
                 BoxShadow(
