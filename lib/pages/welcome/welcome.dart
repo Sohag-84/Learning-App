@@ -133,7 +133,11 @@ class _WelcomeState extends State<Welcome> {
               );
             } else {
               ///jump to another page
-              Navigator.pushNamedAndRemoveUntil(context, "myHomePage", (route) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                "signIn",
+                (route) => false,
+              );
             }
           },
           child: Container(
