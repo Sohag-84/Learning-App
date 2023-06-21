@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_app/home_page.dart';
 import 'package:learning_app/pages/welcome/blocs/welcome_blocs.dart';
 import 'package:learning_app/pages/welcome/welcome.dart';
 
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
             ),
             home: Welcome(),
+            routes: {
+              "myHomePage": (context) => HomeScreen(),
+            },
           );
         },
       ),
