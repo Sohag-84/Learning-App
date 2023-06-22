@@ -96,7 +96,7 @@ Widget buildTextField(
           height: 50.h,
           child: TextField(
             keyboardType: TextInputType.multiline,
-            onChanged: (value)=>func!(value),
+            onChanged: (value) => func!(value),
             style: TextStyle(
               color: AppColors.primaryText,
               fontWeight: FontWeight.normal,
@@ -160,44 +160,50 @@ Widget forgotPassword() {
 }
 
 /// login and registration button
-Widget buildLoginAndRegistrationButton(
-    {required String buttonName, required String buttonType}) {
-  return Container(
-    width: 325.h,
-    height: 50.h,
-    margin: EdgeInsets.only(
-      left: 25.w,
-      right: 25.w,
-      top: buttonType == "Login" ? 40.h : 20.h,
-    ),
-    alignment: Alignment.center,
-    decoration: BoxDecoration(
-      color: buttonType == "Login"
-          ? AppColors.primaryElement
-          : AppColors.primaryBackground,
-      borderRadius: BorderRadius.circular(15.r),
-      border: Border.all(
-        color: buttonType == "Login"
-            ? Colors.transparent
-            : AppColors.primaryFourthElementText,
+Widget buildLoginAndRegistrationButton({
+  required String buttonName,
+  required String buttonType,
+  required void Function()? onTap,
+}) {
+  return InkWell(
+    onTap: onTap,
+    child: Container(
+      width: 325.h,
+      height: 50.h,
+      margin: EdgeInsets.only(
+        left: 25.w,
+        right: 25.w,
+        top: buttonType == "Login" ? 40.h : 20.h,
       ),
-      boxShadow: [
-        BoxShadow(
-          spreadRadius: 1,
-          blurRadius: 2,
-          offset: Offset(0, 1),
-          color: Colors.grey.withOpacity(.1),
-        ),
-      ],
-    ),
-    child: Text(
-      buttonName,
-      style: TextStyle(
-        fontSize: 16.sp,
-        fontWeight: FontWeight.normal,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
         color: buttonType == "Login"
-            ? AppColors.primaryBackground
-            : AppColors.primaryText,
+            ? AppColors.primaryElement
+            : AppColors.primaryBackground,
+        borderRadius: BorderRadius.circular(15.r),
+        border: Border.all(
+          color: buttonType == "Login"
+              ? Colors.transparent
+              : AppColors.primaryFourthElementText,
+        ),
+        boxShadow: [
+          BoxShadow(
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 1),
+            color: Colors.grey.withOpacity(.1),
+          ),
+        ],
+      ),
+      child: Text(
+        buttonName,
+        style: TextStyle(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.normal,
+          color: buttonType == "Login"
+              ? AppColors.primaryBackground
+              : AppColors.primaryText,
+        ),
       ),
     ),
   );

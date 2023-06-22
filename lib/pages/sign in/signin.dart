@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/pages/sign%20in/bloc/signin_bloc.dart';
 import 'package:learning_app/pages/sign%20in/bloc/signin_event.dart';
 import 'package:learning_app/pages/sign%20in/bloc/signin_state.dart';
+import 'package:learning_app/pages/sign%20in/sign_in_controller.dart';
 import 'package:learning_app/pages/sign%20in/widgets/sign_in_widget.dart';
 
 class SignIn extends StatefulWidget {
@@ -25,14 +26,16 @@ class _SignInState extends State<SignIn> {
         appBar: buildAppBar(),
         body: SafeArea(
           child: SingleChildScrollView(
-            child: BlocBuilder<SignInBloc,SignInState>(
-              builder: (context,state){
+            child: BlocBuilder<SignInBloc, SignInState>(
+              builder: (context, state) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     buildThirdPartyLogin(context: context),
                     Center(
-                      child: reusableText(text: "Or use your email account login"),
+                      child: reusableText(
+                        text: "Or use your email account login",
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 36.h),
@@ -46,7 +49,7 @@ class _SignInState extends State<SignIn> {
                             hintText: "Enter your email address",
                             textType: "email",
                             iconName: 'user',
-                            func: (value){
+                            func: (value) {
                               context.read<SignInBloc>().add(EmailEvent(value));
                             },
                           ),
@@ -56,8 +59,10 @@ class _SignInState extends State<SignIn> {
                             hintText: "Enter your password",
                             textType: "password",
                             iconName: 'lock',
-                            func: (value){
-                              context.read<SignInBloc>().add(PasswordEvent(value));
+                            func: (value) {
+                              context
+                                  .read<SignInBloc>()
+                                  .add(PasswordEvent(value));
                             },
                           ),
                         ],
@@ -67,10 +72,15 @@ class _SignInState extends State<SignIn> {
                     buildLoginAndRegistrationButton(
                       buttonName: "Login",
                       buttonType: "Login",
+                      onTap: () {
+                        SignInController(context: context)
+                            .handleSignIn(type: "email");
+                      },
                     ),
                     buildLoginAndRegistrationButton(
                       buttonName: "Register",
                       buttonType: "registration",
+                      onTap: () {},
                     ),
                   ],
                 );

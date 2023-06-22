@@ -26,6 +26,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   void _passwordEvent(PasswordEvent event, Emitter<SignInState> emit) {
     print("===User password: ${event.password}===");
-    emit(state.copyWith(email: event.password));
+    emit(state.copyWith(password: event.password));
   }
 }
