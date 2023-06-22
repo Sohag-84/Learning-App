@@ -7,7 +7,7 @@ import 'package:learning_app/pages/sign%20in/bloc/signin_bloc.dart';
 import 'package:learning_app/pages/sign%20in/bloc/signin_event.dart';
 import 'package:learning_app/pages/sign%20in/bloc/signin_state.dart';
 import 'package:learning_app/pages/sign%20in/sign_in_controller.dart';
-import 'package:learning_app/pages/sign%20in/widgets/sign_in_widget.dart';
+import '../common_widgets.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -23,7 +23,7 @@ class _SignInState extends State<SignIn> {
       color: Colors.white,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: buildAppBar(),
+        appBar: buildAppBar(title: "Log In"),
         body: SafeArea(
           child: SingleChildScrollView(
             child: BlocBuilder<SignInBloc, SignInState>(
@@ -71,16 +71,18 @@ class _SignInState extends State<SignIn> {
                     forgotPassword(),
                     buildLoginAndRegistrationButton(
                       buttonName: "Login",
-                      buttonType: "Login",
+                      buttonType: "login",
                       onTap: () {
                         SignInController(context: context)
                             .handleSignIn(type: "email");
                       },
                     ),
                     buildLoginAndRegistrationButton(
-                      buttonName: "Register",
+                      buttonName: "Sign Up",
                       buttonType: "registration",
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, "register");
+                      },
                     ),
                   ],
                 );

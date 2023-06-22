@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
 
-AppBar buildAppBar() {
+AppBar buildAppBar({required String title}) {
   return AppBar(
     bottom: PreferredSize(
       preferredSize: Size.fromHeight(1),
@@ -15,7 +15,7 @@ AppBar buildAppBar() {
       ),
     ),
     title: Text(
-      "Log In",
+      title,
       style: TextStyle(
         color: AppColors.primaryText,
         fontSize: 16.sp,
@@ -173,16 +173,16 @@ Widget buildLoginAndRegistrationButton({
       margin: EdgeInsets.only(
         left: 25.w,
         right: 25.w,
-        top: buttonType == "Login" ? 40.h : 20.h,
+        top: buttonType == "login" ? 40.h : 20.h,
       ),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: buttonType == "Login"
+        color: buttonType == "login"
             ? AppColors.primaryElement
             : AppColors.primaryBackground,
         borderRadius: BorderRadius.circular(15.r),
         border: Border.all(
-          color: buttonType == "Login"
+          color: buttonType == "login"
               ? Colors.transparent
               : AppColors.primaryFourthElementText,
         ),
@@ -200,7 +200,7 @@ Widget buildLoginAndRegistrationButton({
         style: TextStyle(
           fontSize: 16.sp,
           fontWeight: FontWeight.normal,
-          color: buttonType == "Login"
+          color: buttonType == "login"
               ? AppColors.primaryBackground
               : AppColors.primaryText,
         ),
