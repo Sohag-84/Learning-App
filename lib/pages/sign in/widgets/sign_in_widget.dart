@@ -73,7 +73,8 @@ Widget reusableText({required String text}) {
 Widget buildTextField(
     {required String hintText,
     required String textType,
-    required String iconName}) {
+    required String iconName,
+    required void Function(String value)? func}) {
   return Container(
     width: 325.w,
     height: 50.h,
@@ -95,6 +96,7 @@ Widget buildTextField(
           height: 50.h,
           child: TextField(
             keyboardType: TextInputType.multiline,
+            onChanged: (value)=>func!(value),
             style: TextStyle(
               color: AppColors.primaryText,
               fontWeight: FontWeight.normal,
