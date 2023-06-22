@@ -4,9 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning_app/pages/sign%20in/bloc/signin_bloc.dart';
+import 'package:learning_app/pages/app_bloc_provider.dart';
 import 'package:learning_app/pages/sign%20in/signin.dart';
-import 'package:learning_app/pages/welcome/blocs/welcome_blocs.dart';
 import 'package:learning_app/pages/welcome/welcome.dart';
 
 void main() async {
@@ -21,14 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<WelcomeBlocs>(
-          create: (context) => WelcomeBlocs(),
-        ),
-        BlocProvider<SignInBloc>(
-          create: (context) => SignInBloc(),
-        ),
-      ],
+      providers:AppBlocProviders.allBlocProviders,
       child: ScreenUtilInit(
         designSize: Size(375, 690),
         builder: (context, child) {
