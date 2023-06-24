@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
-import 'package:learning_app/pages/app_bloc_provider.dart';
-import 'package:learning_app/pages/application/application_page.dart';
-import 'package:learning_app/pages/register/register.dart';
-import 'package:learning_app/pages/sign%20in/signin.dart';
 import 'package:learning_app/pages/welcome/welcome.dart';
+
+import 'common/routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: AppBlocProviders.allBlocProviders,
+      providers: [...AppPages.allBlocProviders(context)],
       child: ScreenUtilInit(
         designSize: Size(375, 690),
         builder: (context, child) {
@@ -39,11 +37,8 @@ class MyApp extends StatelessWidget {
                 iconTheme: IconThemeData(color: AppColors.primaryText)
               ),
             ),
-            home: ApplicationPage(),
-            routes: {
-              "signIn": (context) => SignIn(),
-              "register": (context) => Register(),
-            },
+            home: Welcome(),
+            onGenerateRoute:AppPages.generateRouteSettings,
           );
         },
       ),

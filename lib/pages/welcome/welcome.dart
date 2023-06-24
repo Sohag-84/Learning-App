@@ -136,7 +136,7 @@ class _WelcomeState extends State<Welcome> {
               ///jump to another page
               Navigator.pushNamedAndRemoveUntil(
                 context,
-                "signIn",
+                "/sign_in",
                 (route) => false,
               );
             }

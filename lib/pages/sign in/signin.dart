@@ -81,7 +81,7 @@ class _SignInState extends State<SignIn> {
                       buttonName: "Sign Up",
                       buttonType: "registration",
                       onTap: () {
-                        Navigator.pushNamed(context, "register");
+                        Navigator.pushNamed(context, "/register");
                       },
                     ),
                   ],
