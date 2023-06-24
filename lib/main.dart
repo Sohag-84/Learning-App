@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
 import 'package:learning_app/pages/app_bloc_provider.dart';
+import 'package:learning_app/pages/application/application_page.dart';
 import 'package:learning_app/pages/register/register.dart';
 import 'package:learning_app/pages/sign%20in/signin.dart';
 import 'package:learning_app/pages/welcome/welcome.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
                 iconTheme: IconThemeData(color: AppColors.primaryText)
               ),
             ),
-            home: Welcome(),
+            home: ApplicationPage(),
             routes: {
               "signIn": (context) => SignIn(),
               "register": (context) => Register(),
