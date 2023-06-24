@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_app/common/routes/names.dart';
 import 'package:learning_app/pages/application/application_page.dart';
+import 'package:learning_app/pages/application/bloc/app_blocs.dart';
 import 'package:learning_app/pages/register/bloc/register_blocs.dart';
 import 'package:learning_app/pages/register/register.dart';
 import 'package:learning_app/pages/sign%20in/bloc/signin_bloc.dart';
@@ -39,6 +40,9 @@ class AppPages {
       PageEntity(
         route: AppRoutes.APPLICATION,
         page: ApplicationPage(),
+        bloc: BlocProvider(
+          create: (_) => AppBlocs(),
+        ),
       ),
     ];
   }
@@ -48,7 +52,7 @@ class AppPages {
     List<dynamic> blocProviders = <dynamic>[];
     for (var bloc in routes()) {
       //blocProviders.add(bloc.bloc);
-      if(bloc.bloc != null){
+      if (bloc.bloc != null) {
         blocProviders.add(bloc.bloc);
       }
     }

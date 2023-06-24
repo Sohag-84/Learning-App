@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -45,6 +45,8 @@ class SignInController {
             return;
           } else {
             print("===User exits===");
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil("/application", (route) => false);
           }
           if (!credential.user!.emailVerified) {
             ///show message
