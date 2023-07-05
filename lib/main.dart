@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
+import 'package:learning_app/global.dart';
 import 'package:learning_app/pages/welcome/welcome.dart';
 
 import 'common/routes/routes.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Global.init();
   runApp(const MyApp());
 }
 
@@ -32,13 +32,12 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
               appBarTheme: AppBarTheme(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                iconTheme: IconThemeData(color: AppColors.primaryText)
-              ),
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  iconTheme: IconThemeData(color: AppColors.primaryText)),
             ),
             home: Welcome(),
-            onGenerateRoute:AppPages.generateRouteSettings,
+            onGenerateRoute: AppPages.generateRouteSettings,
           );
         },
       ),
