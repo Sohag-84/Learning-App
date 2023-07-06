@@ -2,8 +2,12 @@
 
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
+import 'package:learning_app/pages/home/bloc/home_page_blocs.dart';
+import 'package:learning_app/pages/home/bloc/home_page_events.dart';
+import 'package:learning_app/pages/home/bloc/home_page_states.dart';
 
 AppBar buildAppBar() {
   return AppBar(
@@ -131,7 +135,8 @@ Widget searchView() {
 }
 
 ///for slider
-Widget slidersView() {
+Widget slidersView(
+    {required BuildContext context, required HomePageStates state}) {
   return Column(
     children: [
       Container(
@@ -139,6 +144,10 @@ Widget slidersView() {
         height: 160.h,
         margin: EdgeInsets.only(top: 20.h),
         child: PageView(
+          onPageChanged: (int value) {
+            print("=== $value ===");
+            context.read<HomePageBlocs>().add(HomePageDots(value));
+          },
           children: [
             _slidersContainer(imgPath: "assets/icons/art.png"),
             _slidersContainer(imgPath: "assets/icons/image_1.png"),
@@ -148,15 +157,16 @@ Widget slidersView() {
       ),
       DotsIndicator(
         dotsCount: 3,
-        position: 1,
+        position: state.index,
         decorator: DotsDecorator(
-            color: AppColors.primaryThirdElementText,
-            activeColor: AppColors.primaryElement,
-            size: Size.square(5.0),
-            activeSize: Size(17.w, 5.h),
-            activeShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.r),
-            )),
+          color: AppColors.primaryThirdElementText,
+          activeColor: AppColors.primaryElement,
+          size: Size.square(5.0),
+          activeSize: Size(17.w, 5.h),
+          activeShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.r),
+          ),
+        ),
       ),
     ],
   );
