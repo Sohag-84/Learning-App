@@ -187,3 +187,79 @@ Widget _slidersContainer({required String imgPath}) {
     ),
   );
 }
+
+/// menu view
+Widget menuView() {
+  return Column(
+    children: [
+      Container(
+        width: 325.w,
+        margin: EdgeInsets.only(top: 15.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            _reusableText("Choose your course"),
+            InkWell(
+              onTap: () {},
+              child: _reusableText(
+                "See all",
+                color: AppColors.primaryThirdElementText,
+                fontSize: 10,
+              ),
+            ),
+          ],
+        ),
+      ),
+      Container(
+        padding: EdgeInsets.only(top: 20.h),
+        child: Row(
+          children: [
+            _reusableMenuText("All"),
+            _reusableMenuText("Popular",
+                textColor: AppColors.primaryThirdElementText,
+                bgColor: Colors.white),
+            _reusableMenuText("Newest",
+                textColor: AppColors.primaryThirdElementText,
+                bgColor: Colors.white),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _reusableText(String text,
+    {Color color = AppColors.primaryText,
+    int fontSize = 16,
+    FontWeight fontWeight = FontWeight.bold}) {
+  return Text(
+    text,
+    style: TextStyle(
+      color: color,
+      fontWeight: fontWeight,
+      fontSize: fontSize.sp,
+    ),
+  );
+}
+
+///for menu buttons, reusable text
+Widget _reusableMenuText(String menuText,
+    {Color textColor = AppColors.primaryElementText,
+    Color bgColor = AppColors.primaryElement}) {
+  return Container(
+    margin: EdgeInsets.only(right: 20.w),
+    decoration: BoxDecoration(
+      color: bgColor,
+      borderRadius: BorderRadius.circular(7.r),
+      border: Border.all(color: bgColor),
+    ),
+    padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
+    child: _reusableText(
+      menuText,
+      color: textColor,
+      fontWeight: FontWeight.normal,
+      fontSize: 11,
+    ),
+  );
+}

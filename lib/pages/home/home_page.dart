@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: 10.h),
                 searchView(),
                 slidersView(context: context, state: state),
+                menuView(),
               ],
             ),
           );
