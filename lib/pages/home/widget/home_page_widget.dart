@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
@@ -47,6 +48,7 @@ Widget homePageText(String text,
   );
 }
 
+///for search bar
 Widget searchView() {
   return Row(
     children: [
@@ -125,5 +127,53 @@ Widget searchView() {
         ),
       )
     ],
+  );
+}
+
+///for slider
+Widget slidersView() {
+  return Column(
+    children: [
+      Container(
+        width: 325.w,
+        height: 160.h,
+        margin: EdgeInsets.only(top: 20.h),
+        child: PageView(
+          children: [
+            _slidersContainer(imgPath: "assets/icons/art.png"),
+            _slidersContainer(imgPath: "assets/icons/image_1.png"),
+            _slidersContainer(imgPath: "assets/icons/image_2.png"),
+          ],
+        ),
+      ),
+      DotsIndicator(
+        dotsCount: 3,
+        position: 1,
+        decorator: DotsDecorator(
+            color: AppColors.primaryThirdElementText,
+            activeColor: AppColors.primaryElement,
+            size: Size.square(5.0),
+            activeSize: Size(17.w, 5.h),
+            activeShape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.r),
+            )),
+      ),
+    ],
+  );
+}
+
+///sliders widget
+Widget _slidersContainer({required String imgPath}) {
+  return Container(
+    width: 325.w,
+    height: 160.h,
+    margin: EdgeInsets.only(right: 2),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20.r),
+      image: DecorationImage(
+        image: AssetImage(imgPath),
+        fit: BoxFit.fill,
+      ),
+    ),
   );
 }
