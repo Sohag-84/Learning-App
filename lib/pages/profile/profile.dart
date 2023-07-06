@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/pages/profile/widget/profile_page_widgets.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -13,6 +14,17 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: MediaQuery.sizeOf(context).width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              profileAndEditButton(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
