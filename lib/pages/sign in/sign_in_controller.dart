@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/common/widgets/flutter_toast.dart';
+import 'package:learning_app/global.dart';
 import 'package:learning_app/pages/sign%20in/bloc/signin_bloc.dart';
 
 class SignInController {
@@ -58,6 +60,10 @@ class SignInController {
           var user = credential.user;
           if (user != null) {
             ///we got verified user from firebase
+            Global.storageService
+                .setString(AppConstants.STORAGE_USER_TOKEN_KEY, "123456");
+            Navigator.pushNamedAndRemoveUntil(
+                context, "/application", (route) => false);
           } else {
             ///we have error getting user from firebase
             toastInfo(msg: "Currently you are not a user on this app");

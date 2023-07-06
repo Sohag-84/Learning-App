@@ -69,6 +69,13 @@ class AppPages {
         print("===Valid route name: ${settings.name}===");
         bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
         if (result.first.route == AppRoutes.INITIAL && deviceFirstOpen) {
+          bool isLoggedIn = Global.storageService.getIsLoggedIn();
+          if (isLoggedIn) {
+            return MaterialPageRoute(
+              builder: (_) => ApplicationPage(),
+              settings: settings,
+            );
+          }
           return MaterialPageRoute(
             builder: (_) => SignIn(),
             settings: settings,
