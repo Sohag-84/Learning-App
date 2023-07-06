@@ -1,10 +1,12 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
+import 'package:learning_app/common/values/constant.dart';
+import 'package:learning_app/global.dart';
 import 'package:learning_app/pages/welcome/blocs/welcome_blocs.dart';
 import 'package:learning_app/pages/welcome/blocs/welcome_events.dart';
 import 'package:learning_app/pages/welcome/blocs/welcome_states.dart';
@@ -133,6 +135,12 @@ class _WelcomeState extends State<Welcome> {
                 curve: Curves.easeIn,
               );
             } else {
+              ///check device open first time or not
+              Global.storageService
+                  .setBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST, true);
+              print("=== === Check device open first time or not === ===");
+              print("The value: ${Global.storageService.getDeviceFirstOpen()}");
+
               ///jump to another page
               Navigator.pushNamedAndRemoveUntil(
                 context,

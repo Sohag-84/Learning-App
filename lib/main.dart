@@ -36,7 +36,6 @@ class MyApp extends StatelessWidget {
                   elevation: 0,
                   iconTheme: IconThemeData(color: AppColors.primaryText)),
             ),
-            home: Welcome(),
             onGenerateRoute: AppPages.generateRouteSettings,
           );
         },

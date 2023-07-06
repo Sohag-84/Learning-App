@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_app/common/routes/names.dart';
+import 'package:learning_app/global.dart';
 import 'package:learning_app/pages/application/application_page.dart';
 import 'package:learning_app/pages/application/bloc/app_blocs.dart';
 import 'package:learning_app/pages/register/bloc/register_blocs.dart';
@@ -66,6 +67,13 @@ class AppPages {
       var result = routes().where((element) => element.route == settings.name);
       if (result.isNotEmpty) {
         print("===Valid route name: ${settings.name}===");
+        bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
+        if (result.first.route == AppRoutes.INITIAL && deviceFirstOpen) {
+          return MaterialPageRoute(
+            builder: (_) => SignIn(),
+            settings: settings,
+          );
+        }
         return MaterialPageRoute(
           builder: (_) => result.first.page,
           settings: settings,
