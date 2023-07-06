@@ -3,12 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
+import 'package:learning_app/pages/home/home_page.dart';
 
 Widget buildPage({required int index}) {
-  List<Widget> _widget = [
-    Center(
-      child: Text("Home Page"),
-    ),
+  List<Widget> widget = [
+    HomePage(),
     Center(
       child: Text("Search Page"),
     ),
@@ -22,7 +21,7 @@ Widget buildPage({required int index}) {
       child: Text("Profile Page"),
     ),
   ];
-  return _widget[index];
+  return widget[index];
 }
 
 var bottomTabs = [
