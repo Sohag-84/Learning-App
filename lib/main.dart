@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [...AppPages.allBlocProviders(context)],
       child: ScreenUtilInit(
-        designSize: Size(375, 690),
+        designSize: Size(375, 812),
         builder: (context, child) {
           return MaterialApp(
             title: 'Learning App',

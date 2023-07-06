@@ -21,7 +21,9 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             homePageText("Hello", textColor: AppColors.primaryThirdElementText),
-            homePageText("IH Sohag", top: 5)
+            homePageText("IH Sohag", top: 5),
+            SizedBox(height: 10.h),
+            searchView(),
           ],
         ),
       ),

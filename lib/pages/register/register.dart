@@ -39,7 +39,7 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 36.h),
+                    margin: EdgeInsets.only(top: 60.h),
                     padding: EdgeInsets.symmetric(horizontal: 25.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

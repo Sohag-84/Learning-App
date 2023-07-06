@@ -72,7 +72,7 @@ class _WelcomeState extends State<Welcome> {
                     ],
                   ),
                   Positioned(
-                    bottom: 50.h,
+                    bottom: 60.h,
                     child: DotsIndicator(
                       dotsCount: 3,
                       position: state.page,
@@ -125,6 +125,7 @@ class _WelcomeState extends State<Welcome> {
             ),
           ),
         ),
+        SizedBox(height: 80.h),
         InkWell(
           onTap: () {
             if (index < 3) {
