@@ -263,3 +263,49 @@ Widget _reusableMenuText(String menuText,
     ),
   );
 }
+
+///for course grid view ui
+Widget courseGrid() {
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(15.r),
+      image: DecorationImage(
+        image: AssetImage("assets/icons/image_2.png"),
+        fit: BoxFit.fill,
+      ),
+    ),
+    child: Container(
+      padding: EdgeInsets.all(12.h),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Best Course for IT & Engineering",
+            maxLines: 1,
+            textAlign: TextAlign.left,
+            overflow: TextOverflow.ellipsis,
+            softWrap: false,
+            style: TextStyle(
+              color: AppColors.primaryElementText,
+              fontSize: 11.sp,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            "30 Lessons",
+            maxLines: 1,
+            textAlign: TextAlign.left,
+            overflow: TextOverflow.ellipsis,
+            softWrap: false,
+            style: TextStyle(
+              color: AppColors.primaryFourthElementText,
+              fontSize: 8.sp,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}

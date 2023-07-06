@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,18 +24,45 @@ class _HomePageState extends State<HomePage> {
         builder: (context, state) {
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 25.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                homePageText(
-                  "Hello",
-                  textColor: AppColors.primaryThirdElementText,
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: homePageText(
+                    "Hello",
+                    textColor: AppColors.primaryThirdElementText,
+                  ),
                 ),
-                homePageText("IH Sohag", top: 5),
-                SizedBox(height: 10.h),
-                searchView(),
-                slidersView(context: context, state: state),
-                menuView(),
+                SliverToBoxAdapter(
+                  child: homePageText("IH Sohag", top: 5),
+                ),
+                SliverPadding(padding: EdgeInsets.only(top: 20.h)),
+                SliverToBoxAdapter(
+                  child: searchView(),
+                ),
+                SliverToBoxAdapter(
+                  child: slidersView(context: context, state: state),
+                ),
+                SliverToBoxAdapter(
+                  child: menuView(),
+                ),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(vertical: 18.h),
+                  sliver: SliverGrid(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 1.6,
+                    ),
+                    delegate: SliverChildBuilderDelegate(childCount: 6,
+                        (BuildContext context, int index) {
+                      return InkWell(
+                        onTap: () {},
+                        child: courseGrid(),
+                      );
+                    }),
+                  ),
+                )
               ],
             ),
           );
