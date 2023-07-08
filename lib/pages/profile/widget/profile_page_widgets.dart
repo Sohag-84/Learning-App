@@ -51,3 +51,51 @@ Widget profileAndEditButton() {
     ),
   );
 }
+
+///settings section buttons
+var imagesInfo = <String, String>{
+  'Settings': "settings.png",
+  'Payment details': "credit-card.png",
+  'Achievement': "award.png",
+  'Love': "heart(1).png",
+  'Reminders': "cube.png",
+};
+Widget buildListView() {
+  return Column(
+    children: [
+      ...List.generate(
+        imagesInfo.length,
+        (index) => Padding(
+          padding: EdgeInsets.only(bottom: 15.h),
+          child: InkWell(
+            onTap: () {},
+            child: Row(
+              children: [
+                Container(
+                  width: 40.w,
+                  height: 40.h,
+                  padding: EdgeInsets.all(7.w),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryElement,
+                    borderRadius: BorderRadius.circular(10.w),
+                  ),
+                  child: Image.asset(
+                      "assets/icons/${imagesInfo.values.elementAt(index)}"),
+                ),
+                SizedBox(width: 15.w),
+                Text(
+                  imagesInfo.keys.elementAt(index),
+                  style: TextStyle(
+                    color: AppColors.primaryText,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.sp,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
+}

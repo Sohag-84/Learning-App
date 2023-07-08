@@ -21,6 +21,11 @@ class _ProfilePageState extends State<ProfilePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               profileAndEditButton(),
+              SizedBox(height: 30.h),
+              Padding(
+                padding: const EdgeInsets.only(left: 25.0),
+                child: buildListView(),
+              ),
             ],
           ),
         ),
