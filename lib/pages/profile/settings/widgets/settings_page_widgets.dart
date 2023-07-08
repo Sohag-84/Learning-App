@@ -3,18 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
+import 'package:learning_app/common/widgets/base_text_widget.dart';
 
 ///for app bar
 AppBar buildAppBar() {
   return AppBar(
-    title: Text(
-      "Settings",
-      style: TextStyle(
-        color: AppColors.primaryText,
-        fontWeight: FontWeight.bold,
-        fontSize: 16.sp,
-      ),
-    ),
+    title: reusableText("Settings"),
     centerTitle: true,
   );
 }
