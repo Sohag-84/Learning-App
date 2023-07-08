@@ -26,4 +26,9 @@ class StorageService {
         ? false
         : true;
   }
+
+  ///for remove user token
+  Future<bool> remove({required String key}) {
+    return _prefs.remove(key);
+  }
 }

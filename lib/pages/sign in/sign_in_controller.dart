@@ -41,6 +41,14 @@ class SignInController {
             email: emailAddress,
             password: password,
           );
+
+          if (!credential.user!.emailVerified) {
+            ///show message
+            toastInfo(msg: "You need to verify your email account");
+            return;
+          } else {
+            print("===User is verified===");
+          }
           if (credential.user == null) {
             ///show message
             toastInfo(msg: "You don't exits");
@@ -49,13 +57,6 @@ class SignInController {
             print("===User exits===");
             Navigator.of(context)
                 .pushNamedAndRemoveUntil("/application", (route) => false);
-          }
-          if (!credential.user!.emailVerified) {
-            ///show message
-            toastInfo(msg: "You need to verify your email account");
-            return;
-          } else {
-            print("===User is verified===");
           }
           var user = credential.user;
           if (user != null) {
