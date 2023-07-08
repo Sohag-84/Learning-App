@@ -24,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(height: 30.h),
               Padding(
                 padding: const EdgeInsets.only(left: 25.0),
-                child: buildListView(),
+                child: buildListView(context: context),
               ),
             ],
           ),

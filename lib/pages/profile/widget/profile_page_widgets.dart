@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_app/common/routes/routes.dart';
 import 'package:learning_app/common/values/colors.dart';
 
 AppBar buildAppBar() {
@@ -60,7 +61,7 @@ var imagesInfo = <String, String>{
   'Love': "heart(1).png",
   'Reminders': "cube.png",
 };
-Widget buildListView() {
+Widget buildListView({required BuildContext context}) {
   return Column(
     children: [
       ...List.generate(
@@ -68,7 +69,9 @@ Widget buildListView() {
         (index) => Padding(
           padding: EdgeInsets.only(bottom: 15.h),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(AppRoutes.SETTINGS_PAGE);
+            },
             child: Row(
               children: [
                 Container(

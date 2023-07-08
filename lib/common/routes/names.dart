@@ -15,4 +15,7 @@ class AppRoutes {
 
   ///home page
   static const HOME_PAGE = "/home_page";
+
+  /// settings page
+  static const SETTINGS_PAGE = "/settings_page";
 }
