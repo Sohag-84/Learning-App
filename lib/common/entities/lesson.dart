@@ -1,6 +1,3 @@
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class LessonRequestEntity {
   int? id;
 
@@ -9,10 +6,9 @@ class LessonRequestEntity {
   });
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-  };
+        "id": id,
+      };
 }
-
 
 class LessonListResponseEntity {
   int? code;
@@ -29,7 +25,10 @@ class LessonListResponseEntity {
       LessonListResponseEntity(
         code: json["code"],
         msg: json["msg"],
-        data: json["data"] == null ? [] : List<LessonItem>.from(json["data"].map((x) => LessonItem.fromJson(x))),
+        data: json["data"] == null
+            ? []
+            : List<LessonItem>.from(
+                json["data"].map((x) => LessonItem.fromJson(x))),
       );
 }
 
@@ -45,12 +44,14 @@ class LessonDetailResponseEntity {
     this.data,
   });
 
-
   factory LessonDetailResponseEntity.fromJson(Map<String, dynamic> json) =>
       LessonDetailResponseEntity(
         code: json["code"],
         msg: json["msg"],
-        data: json["data"] == null ? [] : List<LessonVideoItem>.from(json["data"].map((x) => LessonVideoItem.fromJson(x))),
+        data: json["data"] == null
+            ? []
+            : List<LessonVideoItem>.from(
+                json["data"].map((x) => LessonVideoItem.fromJson(x))),
       );
 }
 
@@ -68,8 +69,7 @@ class LessonItem {
     this.id,
   });
 
-  factory LessonItem.fromJson(Map<String, dynamic> json) =>
-      LessonItem(
+  factory LessonItem.fromJson(Map<String, dynamic> json) => LessonItem(
         name: json["name"],
         description: json["description"],
         thumbnail: json["thumbnail"],
@@ -77,11 +77,11 @@ class LessonItem {
       );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "description": description,
-    "thumbnail": thumbnail,
-    "id": id,
-  };
+        "name": name,
+        "description": description,
+        "thumbnail": thumbnail,
+        "id": id,
+      };
 }
 
 class LessonVideoItem {
@@ -103,10 +103,8 @@ class LessonVideoItem {
       );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "url": url,
-    "thumbnail": thumbnail,
-  };
-
+        "name": name,
+        "url": url,
+        "thumbnail": thumbnail,
+      };
 }
-
