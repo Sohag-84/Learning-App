@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:learning_app/common/values/constant.dart';
 
 class HttpUtil {
   static final HttpUtil _instance = HttpUtil._internal();
@@ -9,7 +10,7 @@ class HttpUtil {
   late Dio dio;
   HttpUtil._internal() {
     BaseOptions options = BaseOptions(
-      baseUrl: "http:127.0.0.1:8000",
+      baseUrl: AppConstants.SERVER_API_URL,
       connectTimeout: const Duration(seconds: 5),
       receiveTimeout: const Duration(seconds: 5),
       headers: {},

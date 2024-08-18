@@ -1,10 +1,12 @@
-// ignore_for_file: avoid_print, use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:learning_app/common/apis/user_api.dart';
 import 'package:learning_app/common/entities/entities.dart';
 import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/common/widgets/flutter_toast.dart';
@@ -28,14 +30,14 @@ class SignInController {
           toastInfo(msg: "You need to fill email address");
           return;
         } else {
-          print("===Email is: $emailAddress===");
+          debugPrint("===Email is: $emailAddress===");
         }
         if (password.isEmpty) {
           ///show message:
           toastInfo(msg: "You need to fill password");
           return;
         } else {
-          print("===Password is : $password===");
+          debugPrint("===Password is : $password===");
         }
         try {
           final credential =
@@ -49,16 +51,16 @@ class SignInController {
             toastInfo(msg: "You need to verify your email account");
             return;
           } else {
-            print("===User is verified===");
+            debugPrint("===User is verified===");
           }
           if (credential.user == null) {
             ///show message
             toastInfo(msg: "You don't exits");
             return;
           } else {
-            print("===User exits===");
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil("/application", (route) => false);
+            debugPrint("===User exits===");
+            // Navigator.of(context)
+            //     .pushNamedAndRemoveUntil("/application", (route) => false);
           }
           var user = credential.user;
           if (user != null) {
@@ -75,11 +77,7 @@ class SignInController {
             //type 1 means email login
             loginRequestEntity.type = 1;
 
-            ///we got verified user from firebase
-            Global.storageService
-                .setString(AppConstants.STORAGE_USER_TOKEN_KEY, "123456");
-            Navigator.pushNamedAndRemoveUntil(
-                context, "/application", (route) => false);
+            await asyncPostAllData(loginRequestEntity);
           } else {
             ///we have error getting user from firebase
             toastInfo(msg: "Currently you are not a user on this app");
@@ -100,11 +98,33 @@ class SignInController {
     }
   }
 
-  void asyncPostAllData(LocalHistoryEntry loginRequestEntity){
+  Future<void> asyncPostAllData(LoginRequestEntity loginRequestEntity) async {
     EasyLoading.show(
       indicator: const CircularProgressIndicator(),
       maskType: EasyLoadingMaskType.clear,
       dismissOnTap: true,
     );
+
+    final result =
+        await UserApi.login(params: loginRequestEntity);
+    if (result.code == 200) {
+      try {
+        Global.storageService.setString(
+            AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data));
+        Global.storageService.setString(
+          AppConstants.STORAGE_USER_TOKEN_KEY,
+          result.data!.access_token!,
+        );
+        EasyLoading.dismiss();
+        toastInfo(msg: result.msg!);
+        Navigator.pushNamedAndRemoveUntil(
+            context, "/application", (route) => false);
+      } catch (e) {
+        debugPrint("Saving local storage error: ${e.toString()}");
+      }
+    }else{
+      EasyLoading.dismiss();
+      toastInfo(msg: "Something went wrong!");
+    }
   }
 }

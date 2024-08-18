@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/common/widgets/flutter_toast.dart';
 import 'package:learning_app/pages/register/bloc/register_blocs.dart';
 
@@ -29,7 +30,7 @@ class RegisterController {
       toastInfo(msg: "Password can't be empty");
       return;
     }
-    if (rePassword.contains(password)) {
+    if (!rePassword.contains(password)) {
       toastInfo(msg: "Your password confirmation is wrong");
       return;
     }
@@ -39,6 +40,8 @@ class RegisterController {
       if (credential.user != null) {
         await credential.user?.sendEmailVerification();
         await credential.user?.updateDisplayName(userName);
+        String photoUrl = "${AppConstants.SERVER_API_URL}uploads/default.png";
+        await credential.user?.updatePhotoURL(photoUrl);
         toastInfo(msg: "An email has been sent to your registered email.");
         Navigator.of(context).pop();
       }
